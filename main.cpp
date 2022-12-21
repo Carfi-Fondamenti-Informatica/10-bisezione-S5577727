@@ -7,9 +7,7 @@ float f(float var){
 }
 
 int main() {
-    float a,b,x,err;
-    cout << "inserire estremi";
-    cin >> a >> b;
+    float a=0,b=0,x,err;
 
     while ((f(a) * f(b))>=0){
         cout << "inserire estremi";
@@ -17,22 +15,22 @@ int main() {
     }
 
     do {
-        a=(a+b)/2;
-        x=a;
+        x=(a+b)/2;
 
         if ((f(x))==0){
-            cout << x;
-            break;
+            cout << x << endl;
+            cout << f(x) << endl;
+            return 0;
         }
-        else {
-            if ((f(a) * f(b))<0){
+        if ((f(x) * f(a))<0){
                 b=x;
-            }
-            else a=x;
-            err = abs((b-a)/2);
         }
+        else a=x;
+
+        err = abs((b-a)/2);
+
     }while(err >= 1e-6);
 
-    cout << x;
+    cout << int(x*10000)/10000.0;
     return 0;
 }
