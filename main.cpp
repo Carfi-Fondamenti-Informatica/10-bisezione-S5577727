@@ -1,41 +1,37 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-float c=1;
 
-float funzione (float variabile){
-    c = (variabile*variabile*cos(variabile) + 1);
-    return c;
+float f(float var){
+    return (var*var*cos(var) + 1);
 }
 
 int main() {
-    float a,b;
-    float err;
-    float x;
-
-    while (c>=0){
-       cout << "inserire estremi" << endl;
-       cin >> a >> b;
-       c = funzione(a) * funzione(b);
-   }
-
-    while (err >= 1e-6){
+    float a,b,x, err;
+    cout << "inserire estremi" << endl;
+    cin >> a >> b;
+    while ((f(a) * f(b))>=0){
+        cout << "inserire estremi" << endl;
+        cin >> a >> b;
+    }
+    do {
         a=(a+b)/2;
         x=a;
-        if((funzione(x))==0){
-            return x;
+        float s = f(x);
+        if (s==0){
+            cout << x;
+            break;
         }
         else {
-            if((funzione(a) * funzione(b))<0){
+            if ((f(a) * f(b))<0){
                 b=x;
             }
             else {
                 a=x;
             }
+            err = abs((b-a)/2);
         }
-        err = abs(((b-a)/2));
-    }
+    }while(err >= 1e-6);
     cout << x;
-
-   return 0;
+    return 0;
 }
