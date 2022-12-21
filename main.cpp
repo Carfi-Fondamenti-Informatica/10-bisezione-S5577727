@@ -8,7 +8,6 @@ float f(float var){
 
 int main() {
     float a=0,b=0,x=0,err=1;
-
     do{
         cout <<"inserire estremi"<<endl;
         cin >>a>>b;
@@ -16,15 +15,13 @@ int main() {
 
     do {
         x=(a+b)/2;
-        if ((f(x))==0){
-            cout << x << endl;
-            return 0;
-        }
-            if ((f(x)*f(a))<0) {
-                b = x;
-            } else {
-                a = x;
+            if ((f(x))==0){
+                cout << x << endl;
+                return 0;
             }
+            if ((f(x)*f(a))<0){
+                b = x;
+            } else a=x;
             err = abs((b-a)/2);
     }while(err >= 1e-6);
 
